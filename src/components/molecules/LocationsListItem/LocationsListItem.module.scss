@@ -1,0 +1,87 @@
+.container {
+
+  background-color: var(--clr-white-hex);
+  padding: 2.4rem;
+  border-radius: .6rem;
+  margin-top: 2.4rem;
+  border: .1rem solid rgba(12, 21, 46, .08);
+  box-shadow: 0 .5rem 1.5rem 0 rgba(var(--clr-gray-900-rgb), .04);
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+}
+.status-error {
+
+  border-color: var(--clr-red-hex);
+  color: var(--clr-red-hex);
+  font-weight: 500;
+  box-shadow: 0 .5rem 1.5rem 0 rgba(var(--clr-red-rgb), .08);
+
+}
+
+.wrapper {
+
+
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1.6rem;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.messageError {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: 100%;
+  align-self: center;
+}
+
+.heading {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.listCurrent {
+  font-size: 1.4rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-gap: .4rem 1.6rem;
+  color: var(--clr-gray-600-hex);
+}
+
+.listCurrentItem {
+  display: contents;
+
+
+}
+
+.listCurrentItemLabel {
+
+  flex: 0 0 auto;
+  min-width: 0;
+  max-width: 100%;
+  font-weight: 700;
+}
+.listCurrentItemValue {
+  flex: 0 0 auto;
+  min-width: 0;
+  max-width: 100%;
+
+}
+
+.loadingIcon {
+  display: block;
+  height: 2.4rem;
+  width: auto;
+  margin: 0 auto;
+}

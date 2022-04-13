@@ -1,0 +1,28 @@
+.button {
+
+  flex: 0 0 auto;
+  width: auto;
+  display: block;
+  padding: .5rem;
+  border-radius: .4rem;
+  background: var(--clr-gray-100-hex);
+  color: var(--clr-gray-900-hex);
+  border: .1rem solid rgba(12, 21, 46, .04);
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible {
+    background-color: var(--clr-red-hex);
+    color: var(--clr-white-hex);
+    border-color: var(--clr-red-hex);
+  }
+
+  svg {
+    display: block;
+    height: 1em;
+    width: auto;
+  }
+
+}
