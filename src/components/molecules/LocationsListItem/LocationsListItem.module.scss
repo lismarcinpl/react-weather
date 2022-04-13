@@ -6,6 +6,7 @@
   margin-top: 2.4rem;
   border: .1rem solid rgba(12, 21, 46, .08);
   box-shadow: 0 .5rem 1.5rem 0 rgba(var(--clr-gray-900-rgb), .04);
+  overflow: hidden;
 
   &:first-child {
     margin-top: 0;
@@ -46,6 +47,17 @@
   flex: 1 1 auto;
   min-width: 0;
   max-width: 100%;
+  font-size: 2.2rem;
+  line-height: 3.2rem;
+  font-weight: 700;
+}
+
+
+.weatherIcon {
+  display: block;
+  margin-right: 1.2rem;
+  height: 3.2rem;
+  width: auto;
 }
 
 .listCurrent {
@@ -61,8 +73,6 @@
 
 .listCurrentItem {
   display: contents;
-
-
 }
 
 .listCurrentItemLabel {
@@ -84,4 +94,56 @@
   height: 2.4rem;
   width: auto;
   margin: 0 auto;
+}
+
+
+.nextDays {
+
+  margin-top: 2.4rem;
+
+  [class*='swiper-initialized'] {
+    overflow: visible;
+  }
+
+  [class*='swiper-slide'] {
+    height: auto;
+  }
+
+}
+
+.nextDayWrapper {
+  padding: 0 .8rem;
+  text-align: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.nextDayName {
+  font-size: 1.2rem;
+}
+
+.nextDayCurrentWeather {
+  font-size: 1rem;
+  color: var(--clr-gray-400-hex);
+  margin-bottom: auto;
+}
+
+.nextDayWeatherIcon {
+  display: block;
+  margin: .8rem auto 0;
+}
+
+.nextDayTemp {
+
+  font-size: 1.2rem;
+
+  span {
+    &:not(:last-child) {
+      &::after {
+        content: ' ';
+      }
+    }
+  }
+
 }

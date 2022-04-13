@@ -1,8 +1,10 @@
 // import PropTypes from 'prop-types';
-import styles from './LocationsListItem.module.scss';
 import { useEffect, useState, useContext } from 'react';
-import { LocationsContext } from '../../providers/LocationsProvider';
-import DeleteButton from '../../atoms/DeleteButton/DeleteButton';
+import { LocationsContext } from 'components/providers/LocationsProvider';
+import DeleteButton from 'components/atoms/DeleteButton/DeleteButton';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import styles from './LocationsListItem.module.scss';
+import 'swiper/css';
 
 const LocationsListItem = ({ location }) => {
   const [weather, setWeather] = useState({});
@@ -11,8 +13,6 @@ const LocationsListItem = ({ location }) => {
   const { deleteLocation } = useContext(LocationsContext);
 
   useEffect(() => {
-    console.log('mount ' + location.slug);
-
     fetch('https://weatherdbi.herokuapp.com/data/weather/' + location.slug)
       .then((response) => {
         if (!response.ok) {
@@ -29,24 +29,17 @@ const LocationsListItem = ({ location }) => {
             ['Time', data.currentConditions.dayhour],
             ['Humidity', data.currentConditions.humidity],
             ['Precip', data.currentConditions.precip],
-            ['Temperature', data.currentConditions.temp.c + '°C | ' + data.currentConditions.temp.f + '°F'],
-            ['Wind', data.currentConditions.wind.km + 'km/h | ' + data.currentConditions.wind.mile + 'mph'],
+            ['Temperature', data.currentConditions.temp.c + '°C'],
+            ['Wind', data.currentConditions.wind.km + 'km/h'],
           ],
+          next_days: data.next_days,
         });
         setStatus('success');
       })
       .catch((error) => {
         setStatus('error');
       });
-
-    return () => {
-      console.log('unmount ' + location.slug);
-    };
   }, []); //eslint-disable-line
-
-  useEffect(() => {
-    console.log('change weather ' + location.slug);
-  }, [weather]); //eslint-disable-line
 
   return (
     <li className={`${styles.container} ${styles['status-' + status]}`}>
@@ -74,6 +67,7 @@ const LocationsListItem = ({ location }) => {
       ) : status === 'success' ? (
         <>
           <header className={styles.header}>
+            <img className={styles.weatherIcon} src={weather.currentIcon} alt="" />
             <h3 className={styles.heading}>{weather.region}</h3>
             <DeleteButton onClick={() => deleteLocation(location.slug)} />
           </header>
@@ -85,6 +79,39 @@ const LocationsListItem = ({ location }) => {
               </li>
             ))}
           </ul>
+          {weather.next_days?.length ? (
+            <div className={styles.nextDays}>
+              <Swiper
+                spaceBetween={0}
+                slidesPerView={3.5}
+                breakpoints={{
+                  450: {
+                    slidesPerView: 4.5,
+                  },
+                  550: {
+                    slidesPerView: 5.5,
+                  },
+                  650: {
+                    slidesPerView: 6.5,
+                  },
+                }}
+              >
+                {weather.next_days.map((day) => (
+                  <SwiperSlide>
+                    <div className={styles.nextDayWrapper}>
+                      <div className={styles.nextDayName}>{day.day}</div>
+                      <div className={styles.nextDayCurrentWeather}>{day.comment}</div>
+                      <img className={styles.nextDayWeatherIcon} src={day.iconURL} alt="" />
+                      <div className={styles.nextDayTemp}>
+                        <span>{day.max_temp.c + '°'}</span>
+                        <span>{day.min_temp.c + '°'}</span>
+                      </div>
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+          ) : null}
         </>
       ) : (
         <>

@@ -29,8 +29,6 @@ const LocationsList = () => {
     setFormValues(initialFormState);
   };
 
-  console.log(locations);
-
   return (
     <>
       <div className={styles.container}>

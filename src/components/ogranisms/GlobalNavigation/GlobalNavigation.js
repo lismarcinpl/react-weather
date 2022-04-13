@@ -4,13 +4,15 @@ import styles from './GlobalNavigation.module.scss';
 
 import logo from 'assets/logo.svg';
 
-const GlobalNavigation = () => (
-  <header className={styles.header}>
-    <figure className={styles.logo}>
-      <img src={logo} alt="" />
-    </figure>
-  </header>
-);
+const GlobalNavigation = () => {
+  return (
+    <header className={styles.header}>
+      <figure className={styles.logo}>
+        <img src={logo} alt="" />
+      </figure>
+    </header>
+  );
+};
 
 GlobalNavigation.propTypes = {};
 
